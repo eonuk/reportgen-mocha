@@ -7,6 +7,10 @@ install:
   - npm install
 script:
   - npm run cover:check
+branches:
+  only:
+  - master
+  - develop
 # Node 6 doesn't run prepare after install:
 before_script: "npm run build"
 # Send test coverage data to Coveralls:
