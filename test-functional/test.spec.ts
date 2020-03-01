@@ -2,12 +2,25 @@
 
 // import { expect } from 'chai';
 
-describe('FUNCTIONAL TEST', () => {
-	it('should create an instance using its constructor', () => {
+describe('Describe 1', () => {
+	before('before hook', () => {
+
+	});
+
+	it('step 1', () => {
 		// const example: Example = new Example();
 		// expect(example, 'example should exist').to.exist; // tslint:disable-line:no-unused-expression
 	});
-	it('should return whatever is passed to exampleMethod()', () => {
+
+	it('step 2', () => {
+
+	});
+
+	it('step 3', () => {
+
+	});
+
+	after('after hook', () => {
 
 	});
 });

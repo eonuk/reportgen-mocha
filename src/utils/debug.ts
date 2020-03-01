@@ -1,53 +1,57 @@
+import Mocha from 'mocha';
+
 /**
  * Debug class to the console
  */
 export default class Debug {
-	private level: number;
+	// private
+	private _level: number;
 
 	constructor() {
-		this.level = 0;
-	}
-
-	incrementLevel() {
-		this.level++;
-	}
-
-	decrementLevel() {
-		this.level--;
+		this._level = 0;
 	}
 
 	/**
-	 * @member log logs an operation
-	 * @param {string} operation what kind of operation was done
-	 * @param {*} obj the data object
-	 * @param {string} type the type of the data object
+	 * log information to console
 	 */
-	public log(operation: string, obj: any, type: string) {
-		let msg;
-		switch (operation) {
-			case 'start':
-				this.logMsg(`> start ${type}: ${obj.title}`);
-				break;
-			case 'end':
-				this.logMsg(`< end ${type}: ${obj.title}`);
-				break;
-			case 'store':
-				msg = `+ #${obj.id} store ${type}:`;
-				msg += ` ${obj.title}`;
-				msg += ` (${obj.duration}ms).`;
-				if (obj.mpStats) {
-					msg += ` stats: ${JSON.stringify(obj.mpStats)}`;
-				}
-				this.logMsg(msg);
-				break;
+	public log(
+		operation: string,
+		obj?: Mocha.Suite | Mocha.Hook | Mocha.Test,
+		indent = 0
+	) {
+		const title = obj !== undefined ? obj.title : '';
+		let symbol = '-';
+		const newline = operation.indexOf('end') >= 0 ? '\n' : '';
+
+		// indents
+		if (indent > 0) {
+			this._level += indent;
+			symbol = '>';
 		}
+		if (indent < 0) {
+			this._level += indent;
+			symbol = '<';
+		}
+
+		// logging
+		this.logMsg(`${symbol} ${operation} :: ${title}${newline}`);
+
+		/* case 'store':
+			msg = `+ #${obj.id} store ${type}:`;
+			msg += ` ${obj.title}`;
+			msg += ` (${obj.duration}ms).`;
+			if (obj.mpStats) {
+				msg += ` stats: ${JSON.stringify(obj.mpStats)}`;
+			}
+			this.logMsg(msg);
+			break; */
 	}
 
 	// ---------------------------------------------------
 	// PRIVATE
 
 	private get indent() {
-		return '  '.repeat(this.level);
+		return '  '.repeat(this._level);
 	}
 
 	private logMsg(msg: string) {
