@@ -1,0 +1,7 @@
+{
+    "require": ["source-map-support/register", "ts-node/register"],
+    "extension": "ts",
+    "spec": "test/**/*.spec.ts",
+    "reporter": "src/index",
+    "reporterOption": []
+  }
