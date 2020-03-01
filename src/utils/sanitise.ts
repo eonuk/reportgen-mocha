@@ -30,7 +30,7 @@ export default class Sanitise {
         const suiteIds = suite.suites.map(suit => suit.mpId);*/
 
 		// store hooks, tests and suites in one array, sorted in creation order
-		const childrenIds: any[] = []
+		/* const childrenIds: any[] = []
 			.concat(suite.beforeAll)
 			.concat(suite.beforeEach)
 			.concat(suite.afterAll)
@@ -38,7 +38,7 @@ export default class Sanitise {
 			.concat(suite.tests)
 			.concat(suite.suites)
 			.map(item => item.mpId)
-			.sort((a: number, b: number) => a > b);
+			.sort((a: number, b: number) => a > b); */
 
 		// console.log(beforeHookIds, afterHookIds, testIds, suiteIds);
 		// console.log(childrenIds);
@@ -67,7 +67,7 @@ export default class Sanitise {
             afterHooks: afterHookIds,
             tests: testIds,
             suites: suiteIds,*/
-			children: childrenIds,
+			// children: childrenIds,
 
 			// passes: passingTests,
 			// failures: failingTests,
