@@ -1,8 +1,14 @@
+import { Suite } from 'mocha';
+
+type RGSuite = {
+	title: string;
+};
+
 /**
  * Sanitise
  */
 export default class Sanitise {
-	static cleanSuite(suite: Mocha.Suite): object {
+	static cleanSuite(suite: Mocha.Suite): RGSuite {
 		/* const passingTests = [];
         const failingTests = [];
         const pendingTests = [];
@@ -84,9 +90,13 @@ export default class Sanitise {
            _.isEmpty(cleaned.tests) &&
            _.isEmpty(cleaned.beforeHooks) &&
            _.isEmpty(cleaned.afterHooks);
-        return !isEmptySuite && cleaned;*/
+		return !isEmptySuite && cleaned;*/
 
-		return obj;
+		const s: RGSuite = {
+			title: 'fsfdfs'
+		};
+
+		return s;
 	}
 
 	/**
@@ -109,6 +119,7 @@ export default class Sanitise {
 		//     /* istanbul ignore next: test.fn exists prior to mocha 2.4.0 */
 		//     code = test.fn ? test.fn.toString() : "";
 		// }
+		// test.ctx;
 
 		const obj = {
 			mpType: 'test',
