@@ -2,9 +2,16 @@
 
 import { expect } from 'chai';
 
+/**
+ * Calculator
+ */
 class Calculator {
 	add(a:number, b:number) {
 		return a+b;
+	}
+
+	subtract(a:number, b:number) {
+		return a+b; // DEFECT!
 	}
 
 	multiply(a:number, b:number) {
@@ -12,26 +19,38 @@ class Calculator {
 	}
 }
 
-
-describe('Describe 1', () => {
+/**
+ * TEST
+ */
+describe('Calculator Operations', () => {
 	let calculator: Calculator;
 
 	before('before hook', () => {
 		calculator = new Calculator();
 	});
 
-	it('step 1', () => {
-		const result = calculator.add(3,6);
-		expect(result).to.equal(9);
+	describe('Addition Operations', () => {
+		it('add two integers', () => {
+			const result = calculator.add(14, 3);
+			expect(result).to.equal(17);
+		});
+
+		it('add two floats', () => {
+			const result = calculator.add(10.7, 6.2);
+			expect(result).to.equal(16.9);
+		});
 	});
 
-	it('step 2', () => {
-		const result = calculator.multiply(3,6);
-		expect(result).to.equal(19);
-	});
+	describe('Subtraction Operations', () => {
+		it('add two integers', () => {
+			const result = calculator.subtract(14, 3);
+			expect(result).to.equal(11);
+		});
 
-	it('step 3', () => {
-
+		it('add two floats', () => {
+			const result = calculator.subtract(10.7, 6.2);
+			expect(result).to.equal(4.5);
+		});
 	});
 
 	after('after hook', () => {
